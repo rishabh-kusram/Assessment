@@ -1,10 +1,8 @@
-package StringCalc;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Unit tests for the StringCalculator class
-class StringCalculatorTest {
+public class StringCalculatorTest {
 
     // Case 1: Empty string should return 0
     @Test
@@ -34,7 +32,7 @@ class StringCalculatorTest {
         assertEquals(15, calc.add("1,2,3,4,5")); // "1,2,3,4,5" => 15
     }
 
-     // Case 3: Support newline as a delimiter along with commas
+    // Case 3: Support newline as a delimiter along with commas
     @Test
     void add_NumbersWithNewlines_ReturnsSum() {
         StringCalculator calc = new StringCalculator();
@@ -48,29 +46,27 @@ class StringCalculatorTest {
         assertEquals(3, calc.add("//;\n1;2")); // delimiter = ";"
     }
 
-      // Case 5: Negative numbers should throw an exception
+    // Case 5: Negative numbers should throw an exception
     @Test
     void add_NegativeNumber_ThrowsException() {
         StringCalculator calc = new StringCalculator();
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,
-            () -> calc.add("1,-2,3")
-        );
+                IllegalArgumentException.class,
+                () -> calc.add("1,-2,3"));
         assertEquals("negatives not allowed: -2", exception.getMessage());
     }
 
-     // Case 6: Multiple negatives should all appear in the exception message
+    // Case 6: Multiple negatives should all appear in the exception message
     @Test
     void add_MultipleNegatives_ThrowsExceptionWithAllNegatives() {
         StringCalculator calc = new StringCalculator();
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,
-            () -> calc.add("1,-2,3,-4")
-        );
+                IllegalArgumentException.class,
+                () -> calc.add("1,-2,3,-4"));
         assertEquals("negatives not allowed: -2, -4", exception.getMessage());
     }
 
-     // Case 7: Track how many times add() was called
+    // Case 7: Track how many times add() was called
     @Test
     void getCalledCount_ReturnsNumberOfAddCalls() {
         StringCalculator calc = new StringCalculator();
@@ -115,7 +111,7 @@ class StringCalculatorTest {
     @Test
     void add_NumbersGreaterThan1000_AreIgnored() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(2, calc.add("2,1001"));   // 1001 ignored
+        assertEquals(2, calc.add("2,1001")); // 1001 ignored
         assertEquals(1002, calc.add("1000,2")); // 1000 included
     }
 
@@ -126,6 +122,3 @@ class StringCalculatorTest {
         assertEquals(6, calc.add("//[***]\n1***2***3")); // delimiter = "***"
     }
 }
-
-
-
