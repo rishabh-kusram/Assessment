@@ -3,28 +3,37 @@ package StringCalc;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StringCalculatorTest {
+// Unit tests for the StringCalculator class
+class StringCalculatorTest {
 
-    // Case: empty string should return 0
+    // Case 1: Empty string should return 0
     @Test
-    public void testEmptyStringReturnsZero() {
-        StringCalculator sc = new StringCalculator();
-        assertEquals(0, sc.add(""));
+    void add_EmptyString_ReturnsZero() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(0, calc.add("")); // "" => 0
     }
 
-    // Case: single number should return itself
+    // Case 1: A single number should return that number
     @Test
-    public void testSingleNumberReturnsValue() {
-        StringCalculator sc = new StringCalculator();
-        assertEquals(5, sc.add("5"));
+    void add_SingleNumber_ReturnsThatNumber() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(5, calc.add("5")); // "5" => 5
     }
 
-    // Case: two numbers should return their sum
+    // Case 1: Two numbers should return their sum
     @Test
-    public void testTwoNumbersReturnsSum() {
-        StringCalculator sc = new StringCalculator();
-        assertEquals(8, sc.add("3,5"));
+    void add_TwoNumbers_ReturnsSum() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(3, calc.add("1,2")); // "1,2" => 1+2 = 3
+    }
+
+    // Case 2: Handle an unknown amount of numbers
+    @Test
+    void add_MultipleNumbers_ReturnsSum() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(15, calc.add("1,2,3,4,5")); // "1,2,3,4,5" => 15
     }
 }
+
 
 
