@@ -23,9 +23,15 @@ public class StringCalculator {
 
         int sum = 0;
 
-        // Parse each number and add to sum
         for (String part : parts) {
-            sum += Integer.parseInt(part);
+            int value = Integer.parseInt(part);
+
+            // Case 5: Throw exception if a negative number is found
+            if (value < 0) {
+                throw new IllegalArgumentException("negatives not allowed: " + value);
+            }
+
+            sum += value;
         }
 
         return sum;
