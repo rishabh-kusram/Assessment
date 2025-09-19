@@ -9,6 +9,9 @@ public class StringCalculator {
     // Case 7: Keep track of how many times add() was called
     private int callCount = 0;
 
+      // Case 8: Maintain a list of listeners (subscribers to the event)
+    private final List<AddListener> listeners = new ArrayList<>();
+
     public int add(String numbers) {
         // Increment call count every time add() is called
         callCount++;
@@ -62,5 +65,19 @@ public class StringCalculator {
      */
     public int getCalledCount() {
         return callCount;
+    }
+
+      /**
+     * Case 8: Allow external code to subscribe to AddOccurred events.
+     */
+    public void addListener(AddListener listener) {
+        listeners.add(listener);
+    }
+
+    // Notify all registered listeners
+    private void triggerAddOccurred(String input, int result) {
+        for (AddListener listener : listeners) {
+            listener.onAdd(input, result);
+        }
     }
 }

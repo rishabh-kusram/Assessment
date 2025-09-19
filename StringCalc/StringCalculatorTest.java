@@ -86,6 +86,30 @@ class StringCalculatorTest {
         // Should return 3
         assertEquals(3, calc.getCalledCount());
     }
+
+    // Case 8: Verify event is triggered after add() is called
+    @Test
+    void add_OccurredEventIsTriggered() {
+        StringCalculator calc = new StringCalculator();
+
+        // holder for event result
+        final String[] capturedInput = new String[1];
+        final int[] capturedResult = new int[1];
+
+        // Subscribe a listener
+        calc.addListener((input, result) -> {
+            capturedInput[0] = input;
+            capturedResult[0] = result;
+        });
+
+        // Call add()
+        int result = calc.add("1,2");
+
+        // Verify both the event and return value match
+        assertEquals(3, result);
+        assertEquals("1,2", capturedInput[0]);
+        assertEquals(3, capturedResult[0]);
+    }
 }
 
 
