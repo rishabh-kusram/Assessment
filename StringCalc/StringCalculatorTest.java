@@ -69,6 +69,23 @@ class StringCalculatorTest {
         );
         assertEquals("negatives not allowed: -2, -4", exception.getMessage());
     }
+
+     // Case 7: Track how many times add() was called
+    @Test
+    void getCalledCount_ReturnsNumberOfAddCalls() {
+        StringCalculator calc = new StringCalculator();
+
+        // At start, no calls yet
+        assertEquals(0, calc.getCalledCount());
+
+        // Call add() three times
+        calc.add("1,2");
+        calc.add("3");
+        calc.add("");
+
+        // Should return 3
+        assertEquals(3, calc.getCalledCount());
+    }
 }
 
 

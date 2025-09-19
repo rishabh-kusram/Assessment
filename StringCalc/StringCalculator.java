@@ -5,7 +5,14 @@ import java.util.List;
 
 // Implementation of the String Calculator Kata
 public class StringCalculator {
- public int add(String numbers) {
+
+    // Case 7: Keep track of how many times add() was called
+    private int callCount = 0;
+
+    public int add(String numbers) {
+        // Increment call count every time add() is called
+        callCount++;
+
         // If the input string is empty or null, return 0
         if (numbers == null || numbers.isEmpty()) {
             return 0;
@@ -46,5 +53,14 @@ public class StringCalculator {
         }
 
         return sum;
+    }
+
+    /**
+     * Case 7: Returns how many times add() was invoked.
+     * 
+     * @return number of times add() has been called
+     */
+    public int getCalledCount() {
+        return callCount;
     }
 }
