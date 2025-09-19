@@ -110,6 +110,14 @@ class StringCalculatorTest {
         assertEquals("1,2", capturedInput[0]);
         assertEquals(3, capturedResult[0]);
     }
+
+    // Case 9: Numbers bigger than 1000 should be ignored
+    @Test
+    void add_NumbersGreaterThan1000_AreIgnored() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(2, calc.add("2,1001"));   // 1001 ignored
+        assertEquals(1002, calc.add("1000,2")); // 1000 included
+    }
 }
 
 
