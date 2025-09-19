@@ -58,6 +58,17 @@ class StringCalculatorTest {
         );
         assertEquals("negatives not allowed: -2", exception.getMessage());
     }
+
+     // Case 6: Multiple negatives should all appear in the exception message
+    @Test
+    void add_MultipleNegatives_ThrowsExceptionWithAllNegatives() {
+        StringCalculator calc = new StringCalculator();
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> calc.add("1,-2,3,-4")
+        );
+        assertEquals("negatives not allowed: -2, -4", exception.getMessage());
+    }
 }
 
 

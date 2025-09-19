@@ -1,5 +1,8 @@
 package StringCalc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Implementation of the String Calculator Kata
 public class StringCalculator {
  public int add(String numbers) {
@@ -22,16 +25,24 @@ public class StringCalculator {
         String[] parts = numberString.split(delimiter);
 
         int sum = 0;
+        List<Integer> negatives = new ArrayList<>();
 
         for (String part : parts) {
             int value = Integer.parseInt(part);
 
-            // Case 5: Throw exception if a negative number is found
+            // Collect negative numbers
             if (value < 0) {
-                throw new IllegalArgumentException("negatives not allowed: " + value);
+                negatives.add(value);
             }
 
             sum += value;
+        }
+
+        // Case 5 & 6: If negatives were found, throw exception
+        if (!negatives.isEmpty()) {
+            String message = "negatives not allowed: " +
+                    negatives.toString().replaceAll("[\\[\\]]", "");
+            throw new IllegalArgumentException(message);
         }
 
         return sum;
