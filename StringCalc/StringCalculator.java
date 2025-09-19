@@ -1,24 +1,25 @@
 package StringCalc;
 
-// Implementation of the String Calculator Kata (Cases 1 + 2)
+// Implementation of the String Calculator Kata
 public class StringCalculator {
-    public int add(String numbers) {
+  public int add(String numbers) {
         // If the input string is empty or null, return 0
         if (numbers == null || numbers.isEmpty()) {
             return 0;
         }
 
-        // Split the string into parts using comma as a delimiter
-        String[] parts = numbers.split(",");
+        // Split the string using both comma and newline as delimiters
+        // Regex: [,|\n] means "split on comma OR newline"
+        String[] parts = numbers.split("[,\n]");
 
         int sum = 0;
 
-        // Parse each number from string to int and add it to the sum
+        // Parse each number and add to sum
         for (String part : parts) {
             sum += Integer.parseInt(part);
         }
 
-        // Return the final computed sum
+        // Return the total
         return sum;
     }
 }

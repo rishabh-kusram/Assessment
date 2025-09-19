@@ -33,6 +33,13 @@ class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(15, calc.add("1,2,3,4,5")); // "1,2,3,4,5" => 15
     }
+
+     // Case 3: Support newline as a delimiter along with commas
+    @Test
+    void add_NumbersWithNewlines_ReturnsSum() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(6, calc.add("1\n2,3")); // "1\n2,3" => 1+2+3 = 6
+    }
 }
 
 
