@@ -2,15 +2,24 @@ package StringCalc;
 
 // Implementation of the String Calculator Kata
 public class StringCalculator {
-  public int add(String numbers) {
+ public int add(String numbers) {
         // If the input string is empty or null, return 0
         if (numbers == null || numbers.isEmpty()) {
             return 0;
         }
 
-        // Split the string using both comma and newline as delimiters
-        // Regex: [,|\n] means "split on comma OR newline"
-        String[] parts = numbers.split("[,\n]");
+        String delimiter = "[,\n]"; // Default delimiters: comma or newline
+        String numberString = numbers;
+
+        // Case 4: Check for custom delimiter format: //{delimiter}\n{numbers}
+        if (numbers.startsWith("//")) {
+            int delimiterEndIndex = numbers.indexOf("\n");
+            delimiter = numbers.substring(2, delimiterEndIndex); // extract delimiter
+            numberString = numbers.substring(delimiterEndIndex + 1); // extract numbers
+        }
+
+        // Split by chosen delimiter(s)
+        String[] parts = numberString.split(delimiter);
 
         int sum = 0;
 
@@ -19,7 +28,6 @@ public class StringCalculator {
             sum += Integer.parseInt(part);
         }
 
-        // Return the total
         return sum;
     }
 }
