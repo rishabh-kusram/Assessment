@@ -118,6 +118,13 @@ class StringCalculatorTest {
         assertEquals(2, calc.add("2,1001"));   // 1001 ignored
         assertEquals(1002, calc.add("1000,2")); // 1000 included
     }
+
+    // Case 10: Delimiters of any length
+    @Test
+    void add_CustomDelimiterOfAnyLength_ReturnsSum() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(6, calc.add("//[***]\n1***2***3")); // delimiter = "***"
+    }
 }
 
 
